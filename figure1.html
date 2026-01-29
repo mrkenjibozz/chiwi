@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Figure Page</title>
+<script src="what.js"></script>
+
+<!-- Bootstrap CDN -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+  body {
+    background: #fff2d6;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Figure stage */
+  .stage {
+    position: relative;
+    width: 900px;
+    height: 600px;
+    margin: 0 auto 100px;
+  }
+
+  .frame {
+    position: absolute;
+    bottom: 100px;
+    width: 420px;
+    height: 420px;
+    inset: 0;
+    background: #9bb9fb;
+    border-radius: 30px;
+  }
+  .frame{ left: 240px; 
+  top: 90px;
+  }
+
+  .figure-img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 320px;
+    height: 320px;
+    transform: translate(-50%, -50%);
+    background: #0f0e3f;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ccc;
+    z-index: 2;
+  }
+
+  .label {
+    position: absolute;
+    background: #2c2a85;
+    color: white;
+    padding: 12px 22px;
+    border-radius: 25px;
+    font-size: 14px;
+    white-space: nowrap;
+    z-index: 3;
+  }
+
+  .l1 { left: -12px; top: 90px; }
+  .l2 { left: -12px; bottom: 90px; }
+  .r1 { right: -43px; top: 90px; }
+  .r2 { right: -12px; bottom: 90px; }
+
+  .btn-primary {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #2c2a85;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    z-index: 4;
+  }
+
+  svg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+  }
+    a#j1 {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+  }
+  .hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+  /* ABOUT SECTION */
+  .about-wrapper {
+    position: relative;
+    margin-top: 80px;
+    margin-bottom: 80px;
+  }
+
+  .about-box {
+    background: #2c2a85;
+    border-radius: 60px;
+    height: 460px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 18px;
+  }
+
+  .chibi-box {
+    position: absolute;
+    left: -20px;
+    bottom: -30px;
+    width: 300px;
+    height: 360px;
+    background: #0f0e3f;
+    border-radius: 30px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+  }
+
+
+  .gallery-box {
+    background: #9bb9fb;
+    height: 400px;
+    width: 100%;
+    border-radius: 25px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Wavy top edge */
+  .gallery-box::before {
+    content: "";
+    position: absolute;
+    top: -12px;
+    left: 0;
+    width: 100%;
+    height: 24px;
+    background: repeating-radial-gradient(
+      circle at 12px 12px,
+      transparent 0,
+      transparent 6px,
+      #9ebcff 7px,
+      #9ebcff 14px
+    );
+  }
+
+  /* FINAL GALLERY WRAPPER */
+  .final-wrapper {
+    position: relative;
+    padding: 80px 0 120px;
+  }
+
+  /* Gallery box */
+  .final-box {
+    background: #9ebcff;
+    height: 260px;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Wavy edge */
+  .final-box::before {
+    content: "";
+    position: absolute;
+    top: -14px;
+    left: 0;
+    width: 100%;
+    height: 28px;
+    background: repeating-radial-gradient(
+      circle at 14px 14px,
+      transparent 0,
+      transparent 7px,
+      #9ebcff 8px,
+      #9ebcff 16px
+    );
+  }
+
+  /* Center cross lines */
+  .cross-h, .cross-v {
+    position: absolute;
+    background: #fbf1d6;
+    z-index: 5;
+  }
+
+  .cross-h {
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    transform: translateY(-50%);
+  }
+
+  .cross-v {
+    left: 50%;
+    top: 0;
+    height: 100%;
+    width: 40px;
+    transform: translateX(-50%);
+  }
+
+  /* Chibi card */
+  .chibi-final {
+    position: absolute;
+    right: 40px;
+    bottom: 20px;
+    width: 240px;
+    height: 300px;
+    background: #2c2a85;
+    border-radius: 30px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+
+  /* Footer bar */
+  .footer-bar {
+    height: 60px;
+    background: #0f0e3f;
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<nav class="navbar navbar-dark" style="background:#0f0e3f;">
+  <div class="container-fluid px-4">
+    <span class="navbar-text text-white"><a id="j1" href="index.html">← BACK</a></span>
+    <button class="btn btn-light rounded-pill fw-bold"><a href="index.html#figures">OTHER FIGURES</a></button>
+  </div>
+</nav>
+
+<!-- TITLE -->
+<div class="container text-center my-4">
+  <h1 class="fw-bold" style="color:#0f0e3f;">Insert Chiwi Figure Here</h1>
+</div>
+
+<!-- FIGURE SECTION -->
+<div class="container d-flex justify-content-center">
+  <div class="stage">
+
+    <div class="frame"></div>
+
+    <!-- SVG POINTERS -->
+    <svg id="svg" viewBox="0 0 900 600">
+      <line x1="160" y1="120" x2="330" y2="200" stroke="black" stroke-width="2"/>
+      <circle cx="160" cy="120" r="6" fill="none" stroke="black" stroke-width="2"/>
+
+      <line x1="160" y1="480" x2="330" y2="380" stroke="black" stroke-width="2"/>
+      <circle cx="160" cy="480" r="6" fill="none" stroke="black" stroke-width="2"/>
+
+      <line x1="740" y1="120" x2="570" y2="200" stroke="black" stroke-width="2"/>
+      <circle cx="740" cy="120" r="6" fill="none" stroke="black" stroke-width="2"/>
+
+      <line x1="740" y1="480" x2="570" y2="380" stroke="black" stroke-width="2"/>
+      <circle cx="740" cy="480" r="6" fill="none" stroke="black" stroke-width="2"/>
+    </svg>
+
+    <!-- LABELS -->
+    <div class="label l1">insert part of figure</div>
+    <div class="label l2">insert part of figure</div>
+    <div class="label r1">insert part of figure here</div>
+    <div class="label r2">insert part of figure</div>
+
+    <!-- IMAGE -->
+    <div class="figure-img">insert image here</div>
+
+    <button class="btn btn-primary" onclick="toggleBox()">image only</button>
+  </div>
+</div>
+<!-- ABOUT SECTION -->
+<div class="container my-5 position-relative">
+
+  <div class="about-box p-5 text-white">
+    <p class="text-center mb-0">About this figure</p>
+  </div>
+
+  <!-- Chibi card -->
+  <div class="chibi-box text-white d-flex align-items-center justify-content-center">
+    insert chibi here
+  </div>
+
+</div>
+<!-- GALLERY TITLE -->
+<div class="container text-center">
+  <div class="gallery-title">GALLERY</div>
+</div>
+
+<!-- GALLERY ROW -->
+<div class="container mb-5">
+  <div class="row g-4">
+    <div class="col-md-6">
+      <div class="gallery-box">1</div>
+    </div>
+    <div class="col-md-6">
+      <div class="gallery-box">2</div>
+    </div>
+  </div>
+</div>
+
+<!-- GALLERY PANELS -->
+<div class="container mb-5">
+  <div class="row g-4">
+    <div class="col-md-6">
+      <div class="gallery-box">3</div>
+    </div>
+    <div class="col-md-6">
+      <div class="gallery-box">4</div>
+    </div>
+  </div>
+</div>
+
+</body>
+<!-- FINAL GALLERY -->
+<div class="container final-wrapper">
+
+  <!-- Cross divider -->
+  <div class="cross-h"></div>
+  <div class="cross-v"></div>
+
+  <!-- Chibi -->
+  <div class="chibi-final">
+    insert chibi here
+  </div>
+
+</div>
+
+<!-- FOOTER BAR -->
+<div class="footer-bar"></div>
+</html>
